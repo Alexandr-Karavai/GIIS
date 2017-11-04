@@ -5,7 +5,6 @@
     <title>GIIS</title>
 
     <script src="js/base/jquery-1.6.2.min.js"></script>
-    <!-- <script src="js/base/ui.spinner.min.js"></script> -->
     <script src="js/init.js"></script>
     <script src="js/drawing.js"></script>
     <script src="js/helper.js"></script>
@@ -16,7 +15,6 @@
     <link href="css/table.css" rel="stylesheet"/>
     <link href="css/button.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
-    <link href="css/ui.spinner.css" rel="stylesheet"/>
     <link href="css/font-awesome.css" rel="stylesheet">
 
 </head>
@@ -24,8 +22,8 @@
   <div class="head">
     <h3><span>Designed & Developed by Alexandr Karavai & Konstantin Netesov exclusively for BSUIR IIT group 421702</span></h3>
   </div>
-<div style="margin:30px; text-align:center;">
-    <div style="float:left;">
+<div class="container">
+    <div class="canvas-container">
       <canvas height="600" width="800" id="canvas">Refresh browser</canvas>
       <br/>
       <label id="info"></label>
@@ -37,13 +35,12 @@
 
     <div class="menu">
         <div id="accordion">
-
             <div class="lab1_ui">
                 <h3>Lab 1</h3>
                 <label for="xPos">xPos:</label>
-                <input id="xPos" value="0" type="text"/>
+                <input class="inP" id="xPos" value="0" type="text"/>
                 <label for="yPos">yPos:</label>
-                <input id="yPos" value="0" type="text"/>
+                <input class="inP" id="yPos" value="0" type="text"/>
 
                 <button onclick="drawPoint()" class="miniButton">Point</button>
                 <br/> <br/>
@@ -56,18 +53,16 @@
                 <button onclick="drawWu()" class="miniButton width_100">Wu</button>
                 <button onclick="draw2Points(); drawWu();" class="miniButton">Test</button>
             </div>
-
             <h3>Canvas Settings</h3>
-
             <div>
                 <label for="step">Step:</label>
-                <input id="step" value="10" style="width: 40px" type="text"/>
-                <button onclick="changeStep()" class="miniButton width_100">Change step</button>
-                <button onclick="resetScale()" class="miniButton width_100">Reset scale</button>
+                <input class="inP" id="step" value="10" type="text"/>
+                <button onclick="changeStep()" class="miniButton">Change step</button>
+                <button onclick="resetScale()" class="miniButton">Reset scale</button>
             </div>
         </div>
-        <button onclick="clearCanvas()" class="miniButton " style="width:360px;">Clear canvas</button>
-        <div style="width:360px; overflow: auto;">
+        <button onclick="clearCanvas()" class="miniButton clear-canvas">Clear canvas</button>
+        <div class="dev-table">
             <table id="steps"></table>
         </div>
     </div>
