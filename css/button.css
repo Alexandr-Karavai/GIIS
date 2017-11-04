@@ -4,20 +4,15 @@
   border-radius: 3px;
   border: 1px solid #2c8875;
   background-color: #18b896;
-
   margin: 5px 5px;
-  color: rgb(250, 249, 254);
+  color: #faf9fe;
 }
 
-#xPos {
-  border-radius: 3px;
-  border: 1px solid #2c8875;
-  width: 40px;
-  height: 20px;
-  margin-left: 5px;
+.clear-canvas {
+  width: 360px;
 }
 
-#yPos {
+.inP {
   border-radius: 3px;
   border: 1px solid #2c8875;
   width: 40px;
