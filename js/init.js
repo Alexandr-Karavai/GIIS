@@ -6,7 +6,7 @@ var scaleFactor = 1;
 var map = [];
 var canvasElem,info, steps;
 var oldPosX,oldPosY;
-var POINT_COLOR = "#0000ff";
+var POINT_COLOR = "#2c8875";
 var POINT_CONTROL_COLOR = "#ff0000";
 var POINT_HOVER_COLOR = "#ff0000";
 var LINE_COLOR = "blue";

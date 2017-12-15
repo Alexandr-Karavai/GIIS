@@ -11,12 +11,12 @@
     <script src="js/canvas.js"></script>
     <script src="js/lines.js"></script>
     <script src="js/filling.js"></script>
+    <script src="js/curves.js"></script>
 
     <link href="css/table.css" rel="stylesheet"/>
     <link href="css/button.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
     <link href="css/font-awesome.css" rel="stylesheet">
-
 </head>
 <body>
   <div class="head">
@@ -36,7 +36,7 @@
     <div class="menu">
         <div id="accordion">
             <div class="lab1_ui">
-                <h3>Lab 1</h3>
+              <h3>Lab 1</h3>
                 <label for="xPos">xPos:</label>
                 <input class="inP" id="xPos" value="0" type="text"/>
                 <label for="yPos">yPos:</label>
@@ -52,6 +52,25 @@
                 <br/>
                 <button onclick="drawWu()" class="miniButton width_100">Wu</button>
                 <button onclick="draw2Points(); drawWu();" class="miniButton">Test</button>
+            </div><br>
+            <div class="lab1_ui">
+              <h3>Lab 2</h3>
+                <label for="radius">Radius:</label>
+                <input class="inP" id="radius" value="10" type="text"/>
+                <button onclick="clearCanvas();drawCircle()" class="miniButton">Circle</button>
+                <button onclick="drawCircleRandom()" class="miniButton">Test</button>
+                <br>
+                <label for="koef">koef:</label>
+                <input class="inP" id="koef" value="10" type="text"/>
+                <button onclick="clearCanvas();drawParabola()" class="miniButton">Parabola</button>
+                <button onclick="drawParabolaRandom()" class="miniButton">Test</button>
+                <br>
+                <label for="a">a:</label>
+                <input class="inP" id="a" value="20" type="text"/>
+                <label for="b">b:</label>
+                <input class="inP" id="b" value="10" type="text"/><br>
+                <button onclick="clearCanvas();drawEllipse()" class="miniButton">Ellipse</button>
+                <button onclick="clearCanvas();drawEllipseRandom()" class="miniButton">Test</button>
             </div>
             <h3>Canvas Settings</h3>
             <div>
