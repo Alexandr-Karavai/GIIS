@@ -21,6 +21,7 @@ body {
   color: #f5f0f7;
   border-radius: 5px;
   border: 3px solid #2c8875;
+  margin-bottom: 20px;
 }
 
 .head {
@@ -49,4 +50,12 @@ body {
 .dev-taible {
   width: 360px;
   overflow: auto;
+}
+
+.ui-select {
+  width: 400px;
+  height: 30px;
+
+  border-radius: 5px;
+  border: 1px solid #2c8875;
 }

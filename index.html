@@ -5,13 +5,20 @@
     <title>GIIS</title>
 
     <script src="js/base/jquery-3.2.1.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/drawing.js"></script>
-    <script src="js/helper.js"></script>
-    <script src="js/canvas.js"></script>
+    <script src="js/base/jquery-ui.js"></script>
+<!-- begin core script -->
+    <script src="js/core/init.js"></script>
+    <script src="js/core/drawing.js"></script>
+    <script src="js/core/helper.js"></script>
+    <script src="js/core/canvas.js"></script>
+    <script src="js/core/hide.js"></script>
+    <script src="js/core/filling.js"></script>
+<!-- end core script -->
     <script src="js/lines.js"></script>
-    <script src="js/filling.js"></script>
     <script src="js/curves.js"></script>
+    <script src="js/splines.js"></script>
+    <script src="js/transformation.js"></script>
+    <script src="js/triangulation.js"></script>
 
     <link href="css/table.css" rel="stylesheet"/>
     <link href="css/button.css" rel="stylesheet"/>
@@ -34,8 +41,17 @@
     </div>
 
     <div class="menu">
+      <div>
+        <select class="ui-select" id="sellab" name="">
+          <option value="1">Lab 1</option>
+          <option value="2">Lab 2</option>
+          <option value="3">Lab 3</option>
+          <option value="4">Lab 4</option>
+        </select>
+        <button onclick="selectLab()" class="miniButton">Apply</button>
+      </div>
         <div id="accordion">
-            <div class="lab1_ui">
+            <div class="lab1_ui" id="lines" hidden="hidden">
               <h3>Lab 1</h3>
                 <label for="xPos">xPos:</label>
                 <input class="inP" id="xPos" value="0" type="text"/>
@@ -53,7 +69,7 @@
                 <button onclick="drawWu()" class="miniButton width_100">Wu</button>
                 <button onclick="draw2Points(); drawWu();" class="miniButton">Test</button>
             </div><br>
-            <div class="lab1_ui">
+            <div class="lab1_ui" id="circle" hidden="hidden">
               <h3>Lab 2</h3>
                 <label for="radius">Radius:</label>
                 <input class="inP" id="radius" value="10" type="text"/>
@@ -71,16 +87,84 @@
                 <input class="inP" id="b" value="10" type="text"/><br>
                 <button onclick="clearCanvas();drawEllipse()" class="miniButton">Ellipse</button>
                 <button onclick="clearCanvas();drawEllipseRandom()" class="miniButton">Test</button>
-            </div>
-            <h3>Canvas Settings</h3>
-            <div>
-                <label for="step">Step:</label>
-                <input class="inP" id="step" value="10" type="text"/>
-                <button onclick="changeStep()" class="miniButton">Change step</button>
-                <button onclick="resetScale()" class="miniButton">Reset scale</button>
+            </div><br>
+            <div class="lab1_ui" id="splines" hidden="hidden">
+              <h3>Lab 3</h3>
+              <label for="p1x">p1x:</label>
+              <input id="p1x" value="20" style="width: 40px" type="text"/>
+              <label for="p1y">p1y:</label>
+              <input id="p1y" value="0" style="width: 40px" type="text"/>
+
+              <label for="p4x">p4x:</label>
+              <input id="p4x" value="20" style="width: 40px" type="text"/>
+              <label for="p4y">p4y:</label>
+              <input id="p4y" value="10" style="width: 40px" type="text"/>
+
+              <label for="r1x">r1x:</label>
+              <input id="r1x" value="10" style="width: 40px" type="text"/>
+              <label for="r1y">r1y:</label>
+              <input id="r1y" value="10" style="width: 40px" type="text"/>
+
+              <label for="r4x">r4x:</label>
+              <input id="r4x" value="30" style="width: 40px" type="text"/>
+              <label for="r4y">r4y:</label>
+              <input id="r4y" value="20" style="width: 40px" type="text"/>
+
+              <button onclick="setMode(1,false);" class="miniButton">Hermite</button>
+              <button onclick="setMode(1,true);" class="miniButton">Test</button>
+              <br/>
+
+              <button onclick="setMode(2,false);" class="miniButton">Brezier</button>
+              <button onclick="setMode(2,true);" class="miniButton">Test</button>
+              <br/>
+
+              <button onclick="setMode(3,false);" class="miniButton">BSpline</button>
+              <button onclick="setMode(3,true);" class="miniButton">Test</button>
+            </div><br>
+            <div class="lab1_ui" id="cube" hidden="hidden">
+              <h3>Lab 4</h3>
+                <button onclick="drawStartFigure(FIGURE.CUBE);" class="miniButton width_100">Draw cube</button>
+                <!--button onclick="drawStartFigure(FIGURE.PYRAMID);" class="miniButton width_100">Draw pyramid</button-->
+                <br/>
+                <label>
+                    Hide invisible planes: <input type="checkbox" name="hidePlanes"> <br>
+					<!--Perspective: <input type="checkbox" name="perspective">-->
+                </label>
+                <br/>Rotation:<br/>
+                <button onclick="rotateCube(ROTATION.X,false)" class="miniButton width_20">x</button>
+                <button onclick="rotateCube(ROTATION.Y,false)" class="miniButton width_20">y</button>
+                <button onclick="rotateCube(ROTATION.Z,false)" class="miniButton width_20">z</button>
+                <br/>
+                <button onclick="rotateCube(ROTATION.X,true)" class="miniButton width_20">x</button>
+                <button onclick="rotateCube(ROTATION.Y,true)" class="miniButton width_20">y</button>
+                <button onclick="rotateCube(ROTATION.Z,true)" class="miniButton width_20">z</button>
+                <br/>Translation:<br/>
+                <button onclick="translateCube(MOVE_STEP,0,0)" class="miniButton width_20">x</button>
+                <button onclick="translateCube(0,MOVE_STEP,0)" class="miniButton width_20">y</button>
+                <button onclick="translateCube(0,0,MOVE_STEP)" class="miniButton width_20">z</button>
+                <br/>
+                <button onclick="translateCube(-MOVE_STEP,0,0)" class="miniButton width_20">x</button>
+                <button onclick="translateCube(0,-MOVE_STEP,0)" class="miniButton width_20">y</button>
+                <button onclick="translateCube(0,0,-MOVE_STEP)" class="miniButton width_20">z</button>
+                <br/>
+                <label for="d">d:</label>
+                <input id="d" value="5" style="width: 40px" type="text"/>
+               <!--< <button onclick="projectionCube()" class="miniButton width_100">Projection</button>-->
+                <!--<div id="joystick">-->
+                <!--<div id="mover"></div>-->
+                <!--</div>-->
+                <!--<div id="coords">&nbsp;</div>-->
             </div>
         </div>
-        <button onclick="clearCanvas()" class="miniButton clear-canvas">Clear canvas</button>
+
+        <div class="lab1_ui">
+          <h3>Canvas Settings</h3>
+            <label for="step">Step:</label>
+            <input class="inP" id="step" value="10" type="text"/><br>
+            <button onclick="changeStep()" class="miniButton">Change step</button>
+            <button onclick="resetScale()" class="miniButton">Reset scale</button><br>
+            <button onclick="clearCanvas()" class="miniButton clear-canvas">Clear canvas</button>
+        </div>
         <div class="dev-table">
             <table id="steps"></table>
         </div>
