@@ -53,7 +53,7 @@ function controlPointExists(x, y) {
 }
 
 //Функция проверки существования точки в координатах х,у
-/*
+
 function pointExists(x, y) {
     var index = null;
     $.each(map, function(i,val) {
@@ -64,7 +64,7 @@ function pointExists(x, y) {
     });
     return index;
 }
-*/
+
 function pointExists(x, y) {
 	return pixelMatrix[x+HALF_PIXEL_COUNT][y+HALF_PIXEL_COUNT];
 }
@@ -152,7 +152,3 @@ function get2PointMap(p1,p2){
 function printPoint(p, name){
     console.log("point " + name + ": " + p.x + ":" + p.y );
 }
-
-
-
-

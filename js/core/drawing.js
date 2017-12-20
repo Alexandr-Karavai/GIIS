@@ -162,3 +162,15 @@ function drawAlgorithm(isRandom) {
         drawBSpline(isRandom);
     }
 }
+
+//Функция отрисовки алгоритма (используется во время перемещения "контрольной точки")
+function drawAlgorithmT(isRandom) {
+    clearStandartMap();
+    if (algorithmType == 1) {
+        drawHermite(isRandom);
+    } else if (algorithmType == 2) {
+        drawBezier(isRandom);
+    } else if (algorithmType == 3) {
+        drawBSpline(isRandom);
+    }
+}

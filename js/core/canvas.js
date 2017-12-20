@@ -99,3 +99,39 @@ function downScale() {
         zoomCube(false);
     }
 }
+
+function selectLab() {
+  var selLab = document.getElementById("sellab").value;
+
+  if (selLab == 1) {
+    document.getElementById("splines").hidden = true;
+    document.getElementById("circle").hidden = true;
+    document.getElementById("cube").hidden = true;
+    document.getElementById("lines").hidden = false;
+  }
+  else if (selLab == 2) {
+    $("body > script").remove();
+    document.getElementById("lines").hidden = true;
+    document.getElementById("splines").hidden = true;
+    document.getElementById("cube").hidden = true;
+    document.getElementById("circle").hidden = false;
+  }
+  else if (selLab == 3) {
+
+    var div = document.createElement('script');
+    div.src = "js/spline/splineCore.js"
+    document.body.insertBefore(div, document.body.firstChild);
+
+    document.getElementById("lines").hidden = true;
+    document.getElementById("circle").hidden = true;
+    document.getElementById("splines").hidden = false;
+    document.getElementById("cube").hidden = true;
+  }
+  else if (selLab == 4) {
+    $("body > script").remove();
+    document.getElementById("lines").hidden = true;
+    document.getElementById("circle").hidden = true;
+    document.getElementById("splines").hidden = true;
+    document.getElementById("cube").hidden = false;
+  }
+}

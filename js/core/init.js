@@ -9,7 +9,7 @@ var oldPosX,oldPosY;
 var POINT_COLOR = "#2c8875";
 var POINT_CONTROL_COLOR = "#ff0000";
 var POINT_HOVER_COLOR = "#ff0000";
-var LINE_COLOR = "blue";
+var LINE_COLOR = "#2c8875";
 var CORAL = "#ff7f50";
 var WHITE_SMOKE = "#f5f5f5";
 var tid = 0;
@@ -21,6 +21,9 @@ var posX;
 var posY;
 var showInfoCheckBox;
 var hidePlanesCheckBox;
+
+var algorithmType;
+
 
 var MODE = {
     MAIN: "MAIN",
@@ -69,6 +72,11 @@ $(function() {
 
 function setMode(newMode) {
     mode = newMode;
+}
+
+function setModeT(mode, isRandom) {
+    algorithmType = mode;
+    drawAlgorithmT(isRandom);
 }
 
 function setLabMode(newMode) {
